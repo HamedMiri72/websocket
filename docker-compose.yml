@@ -1,0 +1,25 @@
+services:
+  mangodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INIT_ROOT_USERNAME=hamed
+      - MONGO_INIT_ROOT_PASSWORD=miri
+  mango-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - 8080:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME = hamed
+      - ME_CONFIG_MONGODB_PASSWORD = miri
+      - ME_CONFIG_MONGODB_SERVER = mongodb
+volumes:
+  mongo: {}
+
+
